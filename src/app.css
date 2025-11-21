@@ -1,0 +1,59 @@
+@source "../node_modules/@pixelcode_/blocks";
+@import url('https://fonts.googleapis.com/css2?family=Geist&display=swap');
+@import '@pixelcode_/blocks/app.css';
+@import 'tailwindcss';
+
+@theme {
+	--color-primary: oklch(0.63 0.12 135.21);
+	/* --color-background: oklch(100 0 0);
+	--color-foreground: oklch(0.21 0 264.48);
+
+	--color-muted: oklch(0.8681 0.01 195.77);
+	--color-muted-fg: oklch(0.5547 0.0407 257.44);
+
+	--color-card: oklch(1 0 0);
+	--color-card-fg: oklch(0.1371 0.036 258.53);
+
+	--color-border: oklch(0.8877 0 0);
+	--color-input: oklch(1 0 0);
+
+	--color-primary: oklch(0.68 0.16 35.18);
+	--color-primary-fg: oklch(1 0 0);
+
+	--color-destructive: oklch(0.5771 0.2151 27.32);
+	--color-destructive-fg: oklch(0.9838 0.0035 247.86);
+
+	--color-alert-info: oklch(0.5735 0.118462 232.993);
+	--color-alert-success: oklch(0.6762 0.1487 161.82);
+	--color-alert-warning: oklch(0.6791 0.1397 82.62); */
+
+	--font-geist: 'Geist', sans-serif;
+	--default-font-family: var(--font-geist);
+}
+
+@layer theme {
+	.dark {
+		--color-primary: oklch(0.8 0.7 0);
+		/* --color-background: oklch(0.21 0 264.48);
+		--color-foreground: oklch(100 0 0);
+
+		--color-muted: oklch(0.28 0.0369 259.97);
+		--color-muted-fg: oklch(0.7107 0.0351 256.79);
+
+		--color-card: oklch(0.2427 0.0412 249.87);
+		--color-card-fg: oklch(0.9838 0.0035 247.86);
+
+		--color-border: oklch(0.3722 0.054 259.93);
+		--color-input: oklch(0.2311 0.0277 260.02);
+
+		--color-primary: oklch(0.68 0.16 35.18);
+		--color-primary-fg: oklch(1 0 0);
+
+		--color-destructive: oklch(0.5656 0.1949 26.07);
+		--color-destructive-fg: oklch(0.9838 0.0035 247.86);
+
+		--color-alert-info: oklch(0.5735 0.118462 232.993);
+		--color-alert-success: oklch(0.6762 0.1487 161.82);
+		--color-alert-warning: oklch(0.6393 0.13151021665669818 82.81075069236572); */
+	}
+}
