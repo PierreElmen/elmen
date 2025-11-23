@@ -2,6 +2,7 @@
 	import BentoGrid from '$lib/components/bento/BentoGrid.svelte';
 	import BentoCard from '$lib/components/bento/BentoCard.svelte';
 	import BentoDrawing from '$lib/components/bento/BentoDrawing.svelte';
+	import SystemStats from '$lib/components/bento/SystemStats.svelte';
 
 	const today = new Date().toLocaleDateString('en-US', {
 		weekday: 'long',
@@ -74,22 +75,9 @@
 				</div>
 			</BentoCard>
 
-			<!-- Status / Availability (Small Top Right) -->
-			<BentoCard colSpan={3} rowSpan={1} title="STATUS // CURRENT">
-				<div class="flex h-full items-center justify-between">
-					<div class="flex items-center gap-3">
-						<div class="relative">
-							<div class="h-3 w-3 rounded-full bg-red-500"></div>
-							<div
-								class="absolute inset-0 h-3 w-3 animate-ping rounded-full bg-red-500 opacity-75"
-							></div>
-						</div>
-						<div>
-							<div class="text-sm font-bold">NOT AVAILABLE</div>
-							<div class="text-[10px] text-[var(--color-retro-muted)]">BUSY BUILDING</div>
-						</div>
-					</div>
-				</div>
+			<!-- System Metrics (Small Top Right) -->
+			<BentoCard colSpan={3} rowSpan={1} title="SYSTEM // METRICS">
+				<SystemStats />
 			</BentoCard>
 
 			<!-- Socials (Small Top Right) -->

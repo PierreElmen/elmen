@@ -4,6 +4,7 @@
 	import SlidePanel from '$lib/components/modal/SlidePanel.svelte';
 	import Crosshair from '$lib/components/ui/Crosshair.svelte';
 	import InputDisplay from '$lib/components/ui/InputDisplay.svelte';
+	import CRTOverlay from '$lib/components/ui/CRTOverlay.svelte';
 	import { layoutState } from '$lib/stores/layoutStore.svelte';
 	import { navigationState } from '$lib/stores/navigationStore.svelte';
 	import { onMount } from 'svelte';
@@ -98,6 +99,9 @@
 <svelte:window onkeydown={handleKeydown} onmousemove={handleMouseMove} />
 
 <div class="flex min-h-screen bg-[var(--color-bg-main)]">
+	<!-- CRT Overlay -->
+	<CRTOverlay />
+
 	<!-- Input Display Overlay -->
 	<InputDisplay />
 
