@@ -1,59 +1,138 @@
-@source "../node_modules/@pixelcode_/blocks";
-@import url('https://fonts.googleapis.com/css2?family=Geist&display=swap');
-@import '@pixelcode_/blocks/app.css';
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@theme {
-	--color-primary: oklch(0.63 0.12 135.21);
-	/* --color-background: oklch(100 0 0);
-	--color-foreground: oklch(0.21 0 264.48);
-
-	--color-muted: oklch(0.8681 0.01 195.77);
-	--color-muted-fg: oklch(0.5547 0.0407 257.44);
-
-	--color-card: oklch(1 0 0);
-	--color-card-fg: oklch(0.1371 0.036 258.53);
-
-	--color-border: oklch(0.8877 0 0);
-	--color-input: oklch(1 0 0);
-
-	--color-primary: oklch(0.68 0.16 35.18);
-	--color-primary-fg: oklch(1 0 0);
-
-	--color-destructive: oklch(0.5771 0.2151 27.32);
-	--color-destructive-fg: oklch(0.9838 0.0035 247.86);
-
-	--color-alert-info: oklch(0.5735 0.118462 232.993);
-	--color-alert-success: oklch(0.6762 0.1487 161.82);
-	--color-alert-warning: oklch(0.6791 0.1397 82.62); */
-
-	--font-geist: 'Geist', sans-serif;
-	--default-font-family: var(--font-geist);
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/src/lib/assets/fonts/jetbrains mono/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
 }
 
-@layer theme {
-	.dark {
-		--color-primary: oklch(0.8 0.7 0);
-		/* --color-background: oklch(0.21 0 264.48);
-		--color-foreground: oklch(100 0 0);
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/src/lib/assets/fonts/jetbrains mono/JetBrainsMono-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 800;
+  font-style: italic;
+  font-display: swap;
+}
 
-		--color-muted: oklch(0.28 0.0369 259.97);
-		--color-muted-fg: oklch(0.7107 0.0351 256.79);
+:root {
+  /* Default Theme (Beige / Retro) */
+  --color-bg-main: #f3eadb;
+  --color-bg-card: #fdfbf7;
+  --color-text-main: #2a2a2a;
+  --color-text-muted: #6b6b6b;
+  --color-border: #2a2a2a;
+  --color-accent: #ff6b6b;
+  --color-nav-bg: #e8dfce;
+  
+  /* Dimensions */
+  --nav-width: 64px;
+  --modal-width: 420px;
+}
 
-		--color-card: oklch(0.2427 0.0412 249.87);
-		--color-card-fg: oklch(0.9838 0.0035 247.86);
+/* Orange Theme (Cyber) */
+[data-theme="orange"] {
+  --color-bg-main: #050505;
+  --color-bg-card: #0a0a0a;
+  --color-text-main: #ff9900;
+  --color-text-muted: #995500;
+  --color-border: #ff9900;
+  --color-accent: #ffb84d;
+  --color-nav-bg: #000000;
+  --color-glow: rgba(255, 153, 0, 0.45);
+  --color-glow-muted: rgba(255, 153, 0, 0.15);
+}
 
-		--color-border: oklch(0.3722 0.054 259.93);
-		--color-input: oklch(0.2311 0.0277 260.02);
+/* Green Theme (Matrix) */
+[data-theme="green"] {
+  --color-bg-main: #020a02;
+  --color-bg-card: #051105;
+  --color-text-main: #00ff41;
+  --color-text-muted: #008f11;
+  --color-border: #00ff41;
+  --color-accent: #4dff88;
+  --color-nav-bg: #000000;
+  --color-glow: rgba(0, 255, 65, 0.45);
+  --color-glow-muted: rgba(0, 255, 65, 0.15);
+}
 
-		--color-primary: oklch(0.68 0.16 35.18);
-		--color-primary-fg: oklch(1 0 0);
+/* Black Theme (High Contrast / Minimal) */
+[data-theme="black"] {
+  --color-bg-main: #000000;
+  --color-bg-card: #000000;
+  --color-text-main: #e0e0e0;
+  --color-text-muted: #666666;
+  --color-border: #333333;
+  --color-accent: #ffffff;
+  --color-nav-bg: #000000;
+  --color-glow: rgba(255, 255, 255, 0.35);
+  --color-glow-muted: rgba(255, 255, 255, 0.1);
+}
 
-		--color-destructive: oklch(0.5656 0.1949 26.07);
-		--color-destructive-fg: oklch(0.9838 0.0035 247.86);
+@theme {
+  --font-sans: "JetBrains Mono", monospace;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-retro-bg: var(--color-bg-main);
+  --color-retro-card: var(--color-bg-card);
+  --color-retro-text: var(--color-text-main);
+  --color-retro-muted: var(--color-text-muted);
+  --color-retro-border: var(--color-border);
+  --color-retro-nav: var(--color-nav-bg);
+}
 
-		--color-alert-info: oklch(0.5735 0.118462 232.993);
-		--color-alert-success: oklch(0.6762 0.1487 161.82);
-		--color-alert-warning: oklch(0.6393 0.13151021665669818 82.81075069236572); */
-	}
+body {
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+  
+  /* CRT Glow for supported themes */
+  text-shadow: 0 0 2px var(--color-glow, transparent), 0 0 6px var(--color-glow, transparent);
+}
+
+/* Force hide cursor everywhere to ensure custom crosshair is the only pointer */
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+/* Muted text glow reduction */
+[class*="text-[var(--color-retro-muted)]"],
+[class*="text-[var(--color-text-muted)]"] {
+  text-shadow: 0 0 2px var(--color-glow-muted, transparent);
+}
+
+/* Utility for the "pixel" border look */
+.pixel-border {
+  border: 1px solid var(--color-border);
+  box-shadow: 0 0 2px var(--color-glow, transparent), 0 0 5px var(--color-glow, transparent);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.pixel-border-r {
+  border-right: 1px solid var(--color-border);
+  box-shadow: 1px 0 3px var(--color-glow, transparent);
+}
+
+.pixel-border-t {
+  border-top: 1px solid var(--color-border);
+  box-shadow: 0 -1px 3px var(--color-glow, transparent);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-main);
 }
