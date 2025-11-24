@@ -3,6 +3,10 @@
 	import BentoCard from '$lib/components/bento/BentoCard.svelte';
 	import BentoDrawing from '$lib/components/bento/BentoDrawing.svelte';
 	import SystemStats from '$lib/components/bento/SystemStats.svelte';
+	import DitheredImage from '$lib/components/ui/DitheredImage.svelte';
+	import meImg from '$lib/assets/images/me.webp';
+	import pixelcodeImg from '$lib/assets/images/projects/pixelcode.png';
+	import TechStack from '$lib/components/bento/TechStack.svelte';
 
 	const today = new Date().toLocaleDateString('en-US', {
 		weekday: 'long',
@@ -42,35 +46,45 @@
 
 			<!-- Bio / Intro (Large Top Left) -->
 			<BentoCard colSpan={6} rowSpan={2} title="IDENTITY // BIO">
-				<div class="flex h-full flex-col justify-between">
-					<div>
-						<pre
-							class="mb-4 font-mono text-[8px] leading-[8px] tracking-tighter text-[var(--color-accent)] md:text-[10px] md:leading-[10px]">
- mmmmm    "                                       mmmmmm ""#              m"        
- #   "# mmm     mmm    m mm   m mm   mmm          #        #    mmmmm   mmm   m mm  
- #mmm#"   #    #"  #   #"  "  #"  " #"  #         #mmmmm   #    # # #  #"  #  #"  # 
- #        #    #""""   #      #     #""""         #        #    # # #  #""""  #   # 
- #      mm#mm  "#mm"   #      #     "#mm"         #mmmmm   "mm  # # #  "#mm"  #   # 
+				<div class="flex h-full flex-col gap-4">
+					<!-- Top Row: Image + ASCII Name -->
+					<div class="flex gap-4">
+						<!-- Image (Square) -->
+						<div
+							class="h-24 w-24 shrink-0 overflow-hidden border border-[var(--color-border)] md:h-32 md:w-32"
+						>
+							<DitheredImage src={meImg} pixelScale={3} className="h-full w-full" contrast={1.1} />
+						</div>
+
+						<!-- Stacked ASCII Name -->
+						<div class="flex flex-col justify-center gap-2">
+							<pre
+								class="font-mono text-[8px] leading-[8px] tracking-tighter text-[var(--color-accent)] md:text-[10px] md:leading-[10px]">
+ mmmmm    "                                     
+ #   "# mmm     mmm    m mm   m mm   mmm        
+ #mmm#"   #    #"  #   #"  "  #"  " #"  #       
+ #        #    #""""   #      #     #""""       
+ #      mm#mm  "#mm"   #      #     "#mm"       
 </pre>
+							<pre
+								class="font-mono text-[8px] leading-[8px] tracking-tighter text-[var(--color-accent)] md:text-[10px] md:leading-[10px]">
+ mmmmmm ""#              m"        
+ #        #    mmmmm   mmm   m mm  
+ #mmmmm   #    # # #  #"  #  #"  # 
+ #        #    # # #  #""""  #   # 
+ #mmmmm   "mm  # # #  "#mm"  #   # 
+</pre>
+						</div>
+					</div>
+
+					<!-- Bottom Row: Bio Text + Buttons -->
+					<div class="flex flex-1 flex-col justify-between">
 						<p
 							class="max-w-prose font-mono text-sm leading-relaxed text-[var(--color-retro-muted)] md:text-base"
 						>
-							> Full-stack engineer specializing in high-performance web applications.<br />
-							> Obsessed with pixel-perfect UIs and developer experience.<br />
-							> Currently exploring: Svelte, SvelteKit and AI Agents.
+							> I craft web experiences to make the internet fun again.<br />
+							> With a focus on building a respectful web.<br />
 						</p>
-					</div>
-					<div class="mt-4 flex gap-4">
-						<button
-							class="bg-[var(--color-text-main)] px-4 py-2 font-mono text-xs text-[var(--color-bg-main)] transition-colors hover:bg-[var(--color-accent)]"
-						>
-							DOWNLOAD_CV
-						</button>
-						<button
-							class="border border-[var(--color-border)] px-4 py-2 font-mono text-xs transition-colors hover:bg-[var(--color-border)] hover:text-[var(--color-bg-main)]"
-						>
-							CONTACT_ME
-						</button>
 					</div>
 				</div>
 			</BentoCard>
@@ -148,45 +162,46 @@
 
 			<!-- Tech Stack (Wide Middle) -->
 			<BentoCard colSpan={6} rowSpan={1} title="ARSENAL // TECH_STACK">
-				<div class="flex h-full flex-col justify-center">
-					<div class="flex flex-wrap gap-2">
-						{#each ['SvelteKit', 'TypeScript', 'Tailwind', 'Rust', 'Node.js', 'Postgres', 'Docker', 'Figma'] as tech}
-							<span
-								class="cursor-default border border-[var(--color-border)] px-2 py-1 font-mono text-[10px] transition-colors hover:bg-[var(--color-text-main)] hover:text-[var(--color-bg-main)]"
-							>
-								{tech}
-							</span>
-						{/each}
-					</div>
-				</div>
+				<TechStack mode="preview" />
 			</BentoCard>
 
 			<!-- Project 1 (Large) -->
 			<BentoCard
 				colSpan={4}
 				rowSpan={2}
-				href="/project/alpha"
-				title="PROJECT // ALPHA"
+				href="/project/pixelcode"
+				title="PROJECT // PIXEL&CODE_"
 				clickable={true}
 			>
 				<div class="flex h-full flex-col">
 					<div
-						class="mb-4 flex flex-1 items-center justify-center overflow-hidden border border-[var(--color-border)]/20 bg-[var(--color-border)]/10 transition-colors group-hover:border-[var(--color-accent)]"
+						class="mb-4 flex flex-1 items-center justify-center overflow-hidden border border-[var(--color-border)] bg-[var(--color-border)]/10 transition-colors group-hover:border-[var(--color-accent)]"
 					>
-						<span class="font-mono text-xs text-[var(--color-retro-muted)]"
-							>PREVIEW_IMAGE_placeholder</span
-						>
+						<DitheredImage
+							src={pixelcodeImg}
+							pixelScale={2}
+							className="h-full w-full"
+							contrast={1.3}
+						/>
 					</div>
 					<div>
-						<h3 class="text-lg font-bold">Next-Gen Dashboard</h3>
+						<h3 class="text-lg font-bold">Pixel&Code_</h3>
 						<p class="mt-1 text-xs text-[var(--color-retro-muted)]">
-							Real-time analytics platform with WebSockets and D3.js.
+							Designed and built from scratch. A modern agency website.
 						</p>
-						<div class="mt-2 flex gap-2">
+						<div class="mt-2 flex flex-wrap gap-2">
 							<span class="border border-[var(--color-border)] px-1 font-mono text-[9px]"
 								>SVELTE</span
 							>
-							<span class="border border-[var(--color-border)] px-1 font-mono text-[9px]">D3</span>
+							<span class="border border-[var(--color-border)] px-1 font-mono text-[9px]"
+								>SVELTEKIT</span
+							>
+							<span class="border border-[var(--color-border)] px-1 font-mono text-[9px]"
+								>POSTGRES</span
+							>
+							<span class="border border-[var(--color-border)] px-1 font-mono text-[9px]"
+								>DESIGN</span
+							>
 						</div>
 					</div>
 				</div>

@@ -2,6 +2,7 @@
 	import { layoutState } from '$lib/stores/layoutStore.svelte';
 	import { fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
+	import TechStack from '$lib/components/bento/TechStack.svelte';
 
 	// Content mapping (placeholder for now)
 	const contentMap: Record<string, { title: string; body: string }> = {
@@ -13,7 +14,7 @@
 			title: 'Projects',
 			body: 'Here are some of the things I have been working on recently.'
 		},
-		stack: { title: 'Tech Stack', body: 'SvelteKit, TailwindCSS, TypeScript, and more.' },
+		stack: { title: 'Tech Stack', body: '' },
 		themes: { title: 'Appearance', body: 'Select a theme to customize your experience.' },
 		contact: { title: 'Contact', body: 'Reach out to me at hello@example.com' }
 	};
@@ -108,6 +109,8 @@
 							</div>
 						</button>
 					</div>
+				{:else if layoutState.activeModalId === 'stack'}
+					<TechStack mode="full" />
 				{:else}
 					<div
 						class="mt-8 border border-dashed border-[var(--color-border)] bg-[var(--color-bg-main)] p-4"
