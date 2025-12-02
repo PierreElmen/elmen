@@ -1,7 +1,7 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
-const validSlugs = new Set(['asteroids', 'snake']);
+const validSlugs = new Set(['asteroids', 'snake', 'pong']);
 
 export const load: PageLoad = ({ params }) => {
 	const slug = params.slug?.toLowerCase();

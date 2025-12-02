@@ -2,31 +2,31 @@
 	import { layoutState } from '$lib/stores/layoutStore.svelte';
 	import { fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-	import TechStack from '$lib/components/bento/TechStack.svelte';
+	import { TechStack } from '$lib/components';
 
-const gameLineup = [
-	{
-		title: 'Asteroids Redux',
-		status: 'Now playing',
-		description: 'Arrow keys to steer, Space to fire. Q / Esc to exit.',
-		ready: true,
-		href: '/games/asteroids'
-	},
-	{
-		title: 'Retro Snake',
-		status: 'New',
-		description: 'Arrows or WASD to slither. Walls are deadly.',
-		ready: true,
-		href: '/games/snake'
-	},
-	{
-		title: 'Pong Duel',
-		status: 'Queued',
-		description: 'Head-to-head with gamepad + keyboard support.',
-		ready: false,
-		href: ''
-	}
-];
+	const gameLineup = [
+		{
+			title: 'Asteroids Redux',
+			status: 'Now playing',
+			description: 'Arrow keys to steer, Space to fire. Q / Esc to exit.',
+			ready: true,
+			href: '/games/asteroids'
+		},
+		{
+			title: 'Retro Snake',
+			status: 'New',
+			description: 'Arrows or WASD to slither. Walls are deadly.',
+			ready: true,
+			href: '/games/snake'
+		},
+		{
+			title: 'Pong Duel',
+			status: 'New',
+			description: 'Head-to-head with keyboard support.',
+			ready: true,
+			href: '/games/pong'
+		}
+	];
 
 	// Content mapping (placeholder for now)
 	const contentMap: Record<string, { title: string; body: string }> = {
@@ -65,23 +65,13 @@ const gameLineup = [
 	>
 		<div class="flex h-full flex-col p-8">
 			<div class="mb-8 flex items-start justify-between">
-					<h2 class="font-mono text-2xl font-bold tracking-tight uppercase">{activeContent.title}</h2>
+				<h2 class="font-mono text-2xl font-bold tracking-tight uppercase">{activeContent.title}</h2>
 				<button
 					onclick={() => layoutState.closeModal()}
-					class="rounded-full p-2 transition-colors hover:bg-[var(--color-bg-main)]"
+					class="p-2 text-sm text-[var(--color-retro-muted)] transition-colors hover:text-[var(--color-text-main)]"
 					aria-label="Close"
 				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="20"
-						height="20"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg
-					>
+					[ESC]
 				</button>
 			</div>
 
@@ -141,7 +131,7 @@ const gameLineup = [
 						{#each gameLineup as game}
 							<div class="border border-[var(--color-border)] bg-[var(--color-bg-main)] p-3">
 								<div class="flex items-center justify-between">
-									<div class="font-mono text-sm uppercase tracking-widest">{game.title}</div>
+									<div class="font-mono text-sm tracking-widest uppercase">{game.title}</div>
 									<span
 										class="rounded px-2 py-1 text-[10px] uppercase {game.ready
 											? 'border border-[var(--color-border)] text-[var(--color-text-main)]'
@@ -155,7 +145,7 @@ const gameLineup = [
 								{#if game.ready && game.href}
 									<a
 										href={game.href}
-										class="mt-3 inline-flex items-center gap-2 border border-[var(--color-border)] bg-[var(--color-bg-main)] px-3 py-2 text-[11px] uppercase tracking-widest transition-colors hover:bg-[var(--color-retro-nav)]"
+										class="mt-3 inline-flex items-center gap-2 border border-[var(--color-border)] bg-[var(--color-bg-main)] px-3 py-2 text-[11px] tracking-widest uppercase transition-colors hover:bg-[var(--color-retro-nav)]"
 										onclick={() => layoutState.closeModal()}
 									>
 										<span>Play</span>
@@ -172,7 +162,9 @@ const gameLineup = [
 										>
 									</a>
 								{:else}
-									<div class="mt-3 inline-flex items-center gap-2 border border-dashed border-[var(--color-border)] px-3 py-2 text-[11px] uppercase tracking-widest text-[var(--color-retro-muted)]">
+									<div
+										class="mt-3 inline-flex items-center gap-2 border border-dashed border-[var(--color-border)] px-3 py-2 text-[11px] tracking-widest text-[var(--color-retro-muted)] uppercase"
+									>
 										Coming soon
 									</div>
 								{/if}
@@ -180,9 +172,11 @@ const gameLineup = [
 						{/each}
 					</div>
 
-					<div class="mt-6 border-t border-[var(--color-border)] pt-3 text-[11px] text-[var(--color-retro-muted)]">
-						Plan: wire a shared highscore service so every cabinet reports wins + streaks. Until then,
-						scores stay local.
+					<div
+						class="mt-6 border-t border-[var(--color-border)] pt-3 text-[11px] text-[var(--color-retro-muted)]"
+					>
+						Plan: wire a shared highscore service so every cabinet reports wins + streaks. Until
+						then, scores stay local.
 					</div>
 				{:else}
 					<div

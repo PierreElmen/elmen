@@ -1,6 +1,6 @@
 import { mount, unmount } from 'svelte';
 import { navigationState } from '$lib/stores/navigationStore.svelte';
-import NumberOverlay from '$lib/components/ui/NumberOverlay.svelte';
+import { NumberOverlay } from '$lib/components';
 
 export function clickable(node: HTMLElement) {
 	// Register with store

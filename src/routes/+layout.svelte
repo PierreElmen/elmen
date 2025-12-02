@@ -1,10 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	import NavLeft from '$lib/components/nav/NavLeft.svelte';
-	import SlidePanel from '$lib/components/modal/SlidePanel.svelte';
-	import Crosshair from '$lib/components/ui/Crosshair.svelte';
-	import InputDisplay from '$lib/components/ui/InputDisplay.svelte';
-	import CRTOverlay from '$lib/components/ui/CRTOverlay.svelte';
+	import { NavLeft, SlidePanel, Crosshair, InputDisplay, CRTOverlay } from '$lib/components';
 	import { layoutState } from '$lib/stores/layoutStore.svelte';
 	import { navigationState } from '$lib/stores/navigationStore.svelte';
 	import { inputState } from '$lib/stores/inputState.svelte';

@@ -1,12 +1,8 @@
 <script lang="ts">
-	import BentoGrid from '$lib/components/bento/BentoGrid.svelte';
-	import BentoCard from '$lib/components/bento/BentoCard.svelte';
-	import BentoDrawing from '$lib/components/bento/BentoDrawing.svelte';
-	import SystemStats from '$lib/components/bento/SystemStats.svelte';
-	import DitheredImage from '$lib/components/ui/DitheredImage.svelte';
+	import { BentoGrid, BentoCard, BentoDrawing, SystemStats, TechStack } from '$lib/components';
+	import { DitheredImage } from '$lib/components';
 	import meImg from '$lib/assets/images/me.webp';
 	import pixelcodeImg from '$lib/assets/images/projects/pixelcode.png';
-	import TechStack from '$lib/components/bento/TechStack.svelte';
 
 	const today = new Date().toLocaleDateString('en-US', {
 		weekday: 'long',
