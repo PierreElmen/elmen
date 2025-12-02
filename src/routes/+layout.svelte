@@ -7,6 +7,7 @@
 	import CRTOverlay from '$lib/components/ui/CRTOverlay.svelte';
 	import { layoutState } from '$lib/stores/layoutStore.svelte';
 	import { navigationState } from '$lib/stores/navigationStore.svelte';
+	import { inputState } from '$lib/stores/inputState.svelte';
 	import { onMount } from 'svelte';
 
 	let { children } = $props();
@@ -16,6 +17,8 @@
 	let crosshairY = $state(0);
 	let crosshairVisible = $state(false);
 	const STEP = 20; // Pixels to move per key press
+	const controlsLocked = $derived(inputState.isLocked);
+	const crosshairSuppressed = $derived(inputState.crosshairSuppressed);
 
 	onMount(() => {
 		// Ensure theme is applied on client mount
@@ -29,6 +32,10 @@
 	});
 
 	function handleKeydown(event: KeyboardEvent) {
+		if (controlsLocked) {
+			return;
+		}
+
 		const key = event.key;
 		const isArrow = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(key);
 		const isAction = ['Enter', ' '].includes(key);
@@ -89,11 +96,22 @@
 	}
 
 	function handleMouseMove(event: MouseEvent) {
+		if (crosshairSuppressed) {
+			return;
+		}
+
 		// Update crosshair position to follow mouse
 		crosshairX = event.clientX;
 		crosshairY = event.clientY;
 		crosshairVisible = true;
 	}
+
+	// Hide crosshair immediately when a game or other feature locks input
+	$effect(() => {
+		if (crosshairSuppressed) {
+			crosshairVisible = false;
+		}
+	});
 </script>
 
 <svelte:window onkeydown={handleKeydown} onmousemove={handleMouseMove} />

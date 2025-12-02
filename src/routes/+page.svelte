@@ -53,7 +53,7 @@
 						<div
 							class="h-24 w-24 shrink-0 overflow-hidden border border-[var(--color-border)] md:h-32 md:w-32"
 						>
-							<DitheredImage src={meImg} pixelScale={3} className="h-full w-full" contrast={1.1} />
+							<DitheredImage src={meImg} pixelScale={3} className="h-full w-full" contrast={2} />
 						</div>
 
 						<!-- Stacked ASCII Name -->
