@@ -1,8 +1,16 @@
 <script lang="ts">
-	import { BentoGrid, BentoCard, BentoDrawing, SystemStats, TechStack } from '$lib/components';
+	import {
+		BentoGrid,
+		BentoCard,
+		BentoDrawing,
+		BentoAlbum,
+		SystemStats,
+		TechStack
+	} from '$lib/components';
 	import { DitheredImage } from '$lib/components';
 	import meImg from '$lib/assets/images/me.webp';
 	import pixelcodeImg from '$lib/assets/images/projects/pixelcode.png';
+	import gotlandruntImg from '$lib/assets/images/projects/gotlandrunt.png';
 
 	const today = new Date().toLocaleDateString('en-US', {
 		weekday: 'long',
@@ -11,10 +19,10 @@
 	});
 </script>
 
-<div class="flex h-screen flex-col overflow-hidden px-2 py-4 md:px-4">
+<div class="flex h-screen flex-col overflow-hidden px-2 pt-4 md:px-4">
 	<!-- Top HUD Bar -->
 	<div
-		class="mb-4 flex items-center justify-between border-b border-[var(--color-border)] px-2 pb-2"
+		class="mb-4 flex items-center justify-between border-b border-[var(--color-border)] px-2 pb-4"
 	>
 		<div class="flex items-center gap-4">
 			<div class="grid h-6 w-6 grid-cols-2 gap-0.5">
@@ -161,12 +169,12 @@
 				<TechStack mode="preview" />
 			</BentoCard>
 
-			<!-- Project 1 (Large) -->
+			<!-- Highlighted Project 1: Pixel&Code -->
 			<BentoCard
 				colSpan={4}
 				rowSpan={2}
 				href="/project/pixelcode"
-				title="PROJECT // PIXEL&CODE_"
+				title="HIGHLIGHTED PROJECT // PIXEL&CODE_"
 				clickable={true}
 			>
 				<div class="flex h-full flex-col">
@@ -176,7 +184,8 @@
 						<DitheredImage
 							src={pixelcodeImg}
 							pixelScale={2}
-							className="h-full w-full"
+							className="max-h-full max-w-full"
+							objectFit="cover"
 							contrast={1.3}
 						/>
 					</div>
@@ -203,49 +212,59 @@
 				</div>
 			</BentoCard>
 
-			<!-- Drawing / Request (Square-ish) -->
+			<!-- Highlighted Project 2: GotlandRunt -->
+			<BentoCard
+				colSpan={4}
+				rowSpan={2}
+				href="/project/gotlandrunt"
+				title="HIGHLIGHTED PROJECT // GOTLANDRUNT"
+				clickable={true}
+			>
+				<div class="flex h-full flex-col">
+					<div
+						class="mb-4 flex flex-1 items-center justify-center overflow-hidden border border-[var(--color-border)] bg-[var(--color-border)]/10 transition-colors group-hover:border-[var(--color-accent)]"
+					>
+						<DitheredImage
+							src={gotlandruntImg}
+							pixelScale={2}
+							className="max-h-full max-w-full"
+							contrast={1.3}
+							objectFit="cover"
+						/>
+					</div>
+					<div>
+						<h3 class="text-lg font-bold">GotlandRunt</h3>
+						<p class="mt-1 text-xs text-[var(--color-retro-muted)]">
+							A comprehensive tourism and event platform for Gotland.
+						</p>
+						<div class="mt-2 flex flex-wrap gap-2">
+							<span class="border border-[var(--color-border)] px-1 font-mono text-[9px]"
+								>SVELTE</span
+							>
+							<span class="border border-[var(--color-border)] px-1 font-mono text-[9px]"
+								>AZURE</span
+							>
+							<span class="border border-[var(--color-border)] px-1 font-mono text-[9px]"
+								>DEVOPS</span
+							>
+							<span class="border border-[var(--color-border)] px-1 font-mono text-[9px]">.NET</span
+							>
+							<span class="border border-[var(--color-border)] px-1 font-mono text-[9px]"
+								>DESIGN</span
+							>
+							<span class="border border-[var(--color-border)] px-1 font-mono text-[9px]"
+								>CONTENTFUL</span
+							>
+						</div>
+					</div>
+				</div>
+			</BentoCard>
+
+			<!-- Drawing / Request (moved to third project slot) -->
 			<BentoDrawing colSpan={4} rowSpan={2} />
 
-			<!-- Blog / Writing (Vertical) -->
-			<BentoCard colSpan={4} rowSpan={2} title="LOGS // WRITING">
-				<div class="flex h-full flex-col gap-4 overflow-y-auto pr-2">
-					{#each [{ title: 'The Future of Svelte Runes', date: '2024-10-24' }, { title: 'Building Resilient APIs', date: '2024-09-15' }, { title: 'Why I switched to Rust', date: '2024-08-02' }] as post}
-						<a
-							href="/blog/post"
-							class="group/link border-l-2 border-[var(--color-border)] py-1 pl-3 transition-colors hover:border-[var(--color-accent)]"
-						>
-							<p
-								class="text-xs font-bold transition-colors group-hover/link:text-[var(--color-accent)]"
-							>
-								{post.title}
-							</p>
-							<p class="text-[9px] text-[var(--color-retro-muted)]">{post.date}</p>
-						</a>
-					{/each}
-					<div class="mt-auto pt-2">
-						<a href="/blog" class="font-mono text-[10px] hover:underline">VIEW_ALL_LOGS -></a>
-					</div>
-				</div>
-			</BentoCard>
-
-			<!-- Footer / Copyright -->
-			<BentoCard
-				colSpan={12}
-				rowSpan={1}
-				class="bg-[var(--color-text-main)] text-[var(--color-bg-main)]"
-			>
-				<div class="flex h-full items-center justify-between">
-					<div class="flex gap-4 font-mono text-[10px]">
-						<span>© 2025 PIERRE ELMEN</span>
-						<span>ALL RIGHTS RESERVED</span>
-					</div>
-					<div class="flex gap-2">
-						<div class="h-2 w-2 animate-pulse bg-[var(--color-bg-main)]"></div>
-						<div class="h-2 w-2 bg-[var(--color-bg-main)] opacity-50"></div>
-						<div class="h-2 w-2 bg-[var(--color-bg-main)] opacity-25"></div>
-					</div>
-				</div>
-			</BentoCard>
+			<!-- New Row: Album and future bentos -->
+			<BentoAlbum colSpan={3} rowSpan={1} />
 		</BentoGrid>
 	</div>
 </div>

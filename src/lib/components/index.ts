@@ -5,3 +5,4 @@ export * from './nav';
 export * from './pixel-button';
 export * from './slide-panel';
 export * from './ui';
+export { default as PhotoGallery } from './PhotoGallery.svelte';

@@ -6,10 +6,20 @@
 		alt?: string;
 		pixelScale?: number; // Size of "pixels" (e.g., 4 means 1 image pixel = 4 screen pixels)
 		className?: string;
+		canvasClassName?: string;
 		contrast?: number;
+		objectFit?: 'cover' | 'contain'; // Control how image fits in container
 	}
 
-	let { src, alt = '', pixelScale = 4, className = '', contrast = 1.0 }: Props = $props();
+	let {
+		src,
+		alt = '',
+		pixelScale = 4,
+		className = '',
+		canvasClassName = '',
+		contrast = 1.0,
+		objectFit = 'cover'
+	}: Props = $props();
 
 	let canvas: HTMLCanvasElement;
 	let container: HTMLDivElement;
@@ -166,7 +176,14 @@
 	});
 </script>
 
-<div bind:this={container} class="relative overflow-hidden {className}">
-	<canvas bind:this={canvas} class="h-full w-full object-cover" style="image-rendering: pixelated;"
+<div
+	bind:this={container}
+	class="relative flex items-center justify-center overflow-hidden {className}"
+	style="max-width: 100%; max-height: 100%;"
+>
+	<canvas
+		bind:this={canvas}
+		class="h-auto w-auto max-h-full max-w-full object-{objectFit} {canvasClassName}"
+		style="image-rendering: pixelated;"
 	></canvas>
 </div>
