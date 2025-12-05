@@ -82,13 +82,18 @@
   --color-retro-nav: var(--color-nav-bg);
 }
 
-body {
+html, body {
   background-color: var(--color-bg-main);
   color: var(--color-text-main);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow: hidden; /* Prevent window scrolling */
+  height: 100%;     /* Ensure full height for layout */
+  width: 100%;
+  margin: 0;
+  padding: 0;
   transition: background-color 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+
   
   /* CRT Glow for supported themes + Chromatic Aberration */
   text-shadow: 

@@ -20,10 +20,10 @@
 	});
 </script>
 
-<div class="flex h-screen flex-col overflow-hidden px-2 pt-4 md:px-4">
+<div class="flex h-full flex-col overflow-hidden px-2 pt-4 md:px-4">
 	<!-- Top HUD Bar -->
 	<div
-		class="mb-4 flex items-center justify-between border-b border-[var(--color-border)] px-2 pb-4"
+		class="mb-4 flex items-center justify-between border-b border-[var(--color-border)] px-6 pb-4"
 	>
 		<div class="flex items-center gap-4">
 			<div class="grid h-6 w-6 grid-cols-2 gap-0.5">
@@ -33,7 +33,7 @@
 				<div class="bg-[var(--color-accent)]"></div>
 			</div>
 			<h1 class="font-mono text-sm tracking-widest uppercase">
-				Portfolio // <span class="text-[var(--color-accent)]">Elmen_Dev</span>
+				Portfolio // <span class="text-[var(--color-accent)]">Elmen.Dev</span>
 			</h1>
 		</div>
 		<div class="flex gap-8 font-mono text-xs text-[var(--color-retro-muted)]">

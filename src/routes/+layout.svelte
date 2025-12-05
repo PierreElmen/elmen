@@ -145,13 +145,13 @@
         When modal opens, we increase margin-left by modal width (420px) on desktop.
     -->
 	<main
-		class="min-h-screen flex-1 transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)]"
+		class="my-[16px] mr-[16px] h-[calc(100vh-32px)] flex-1 overflow-y-auto transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)]"
 		style:margin-left={layoutState.isModalOpen
-			? 'calc(var(--nav-width) + var(--modal-width))'
-			: 'var(--nav-width)'}
+			? 'calc(var(--nav-width) + var(--modal-width) + 16px)'
+			: 'calc(var(--nav-width) + 16px)'}
 		style:width={layoutState.isModalOpen
-			? 'calc(100% - var(--nav-width) - var(--modal-width))'
-			: 'calc(100% - var(--nav-width))'}
+			? 'calc(100% - var(--nav-width) - var(--modal-width) - 32px)'
+			: 'calc(100% - var(--nav-width) - 32px)'}
 	>
 		<div class="h-full w-full">
 			{@render children()}

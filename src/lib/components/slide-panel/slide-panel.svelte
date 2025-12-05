@@ -41,13 +41,13 @@
 
 	<!-- Panel -->
 	<aside
-		class="pixel-border-r fixed bottom-0 left-[var(--nav-width)] top-0 z-40 flex w-[calc(100%-var(--nav-width))] flex-col overflow-y-auto bg-[var(--color-retro-card)] shadow-xl md:w-[var(--modal-width)]"
+		class="pixel-border-r fixed top-[16px] bottom-[16px] left-[calc(var(--nav-width)+16px)] z-40 flex w-[calc(100%-var(--nav-width)-32px)] flex-col overflow-y-auto bg-[var(--color-retro-card)] shadow-xl md:w-[var(--modal-width)]"
 		transition:fly={{ x: -100, duration: 400, easing: quintOut }}
 	>
 		<div class="flex h-full flex-col p-8">
 			<!-- Header -->
 			<div class="mb-8 flex items-start justify-between">
-				<h2 class="font-mono text-2xl font-bold uppercase tracking-tight">
+				<h2 class="font-mono text-2xl font-bold tracking-tight uppercase">
 					{activeContent.title}
 				</h2>
 				<button
@@ -79,7 +79,9 @@
 			</div>
 
 			<!-- Footer -->
-			<div class="mt-auto border-t border-[var(--color-border)] pt-8 text-xs text-[var(--color-retro-muted)]">
+			<div
+				class="mt-auto border-t border-[var(--color-border)] pt-8 text-xs text-[var(--color-retro-muted)]"
+			>
 				PRESS [ESC] TO CLOSE
 			</div>
 		</div>

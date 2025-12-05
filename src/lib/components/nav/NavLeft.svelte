@@ -32,7 +32,7 @@
 </script>
 
 <nav
-	class="pixel-border-r fixed top-0 left-0 z-50 flex h-full w-[var(--nav-width)] flex-col bg-[var(--color-retro-nav)]"
+	class="pixel-border-r fixed top-[16px] bottom-[16px] left-[16px] z-50 flex w-[var(--nav-width)] flex-col rounded-l-[1.5rem] bg-[var(--color-retro-nav)]"
 >
 	<!-- Logo / Home -->
 	<a
