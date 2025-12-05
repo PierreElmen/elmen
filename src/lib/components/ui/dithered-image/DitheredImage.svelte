@@ -51,7 +51,7 @@
 		img.src = src;
 
 		img.onload = () => {
-			const ctx = canvas.getContext('2d');
+			const ctx = canvas.getContext('2d', { willReadFrequently: true });
 			if (!ctx) return;
 
 			// Get theme colors
@@ -183,7 +183,7 @@
 >
 	<canvas
 		bind:this={canvas}
-		class="h-auto w-auto max-h-full max-w-full object-{objectFit} {canvasClassName}"
+		class="h-auto max-h-full w-auto max-w-full object-{objectFit} {canvasClassName}"
 		style="image-rendering: pixelated;"
 	></canvas>
 </div>

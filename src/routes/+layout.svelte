@@ -1,10 +1,20 @@
 <script lang="ts">
 	import '../app.css';
-	import { NavLeft, SlidePanel, Crosshair, InputDisplay, CRTOverlay } from '$lib/components';
+	import {
+		NavLeft,
+		SlidePanel,
+		Crosshair,
+		InputDisplay,
+		MonitorOverlay,
+		MonitorBezel,
+		CRTCurve,
+		CRTOverlay
+	} from '$lib/components';
 	import { layoutState } from '$lib/stores/layoutStore.svelte';
 	import { navigationState } from '$lib/stores/navigationStore.svelte';
 	import { inputState } from '$lib/stores/inputState.svelte';
 	import { onMount } from 'svelte';
+	import { CRTMask } from '$lib/crtMasks';
 
 	let { children } = $props();
 
@@ -112,10 +122,10 @@
 
 <svelte:window onkeydown={handleKeydown} onmousemove={handleMouseMove} />
 
-<div class="flex min-h-screen bg-[var(--color-bg-main)]">
-	<!-- CRT Overlay -->
-	<CRTOverlay />
+<MonitorBezel />
 
+<!-- Content is curved -->
+<CRTCurve mask={CRTMask.IBM}>
 	<!-- Input Display Overlay -->
 	<InputDisplay />
 
@@ -147,4 +157,6 @@
 			{@render children()}
 		</div>
 	</main>
-</div>
+</CRTCurve>
+
+<CRTOverlay showScanlines={true} />

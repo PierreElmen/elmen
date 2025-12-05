@@ -146,3 +146,9 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-main);
 }
+
+/* Themed Text Selection */
+::selection {
+  background-color: var(--color-text-main);
+  color: var(--color-bg-main);
+}
