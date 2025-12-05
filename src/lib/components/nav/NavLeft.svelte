@@ -23,6 +23,12 @@
 		{ id: 'contact', label: 'Contact', icon: icons.mail },
 		{ id: 'game-shelf', label: 'Games', icon: icons.gamepad }
 	];
+
+	const isItemActive = (id: string) => layoutState.activeModalId === id;
+
+	function handleNavClick(id: string) {
+		layoutState.toggleModal(id);
+	}
 </script>
 
 <nav
@@ -64,10 +70,10 @@
 				<!-- Modal toggle item -->
 				<button
 					class="group relative flex h-[var(--nav-width)] w-full items-center justify-center border-b border-[var(--color-border)] transition-colors hover:bg-[var(--color-bg-main)]
-                {layoutState.activeModalId === item.id
+                {isItemActive(item.id)
 						? 'bg-[var(--color-bg-main)] text-[var(--color-accent)]'
 						: ''}"
-					onclick={() => layoutState.toggleModal(item.id)}
+					onclick={() => handleNavClick(item.id)}
 					aria-label={item.label}
 					use:clickable
 				>
@@ -83,7 +89,7 @@
 					</span>
 
 					<!-- Active Indicator -->
-					{#if layoutState.activeModalId === item.id}
+					{#if isItemActive(item.id)}
 						<div class="absolute top-0 bottom-0 left-0 w-1 bg-[var(--color-accent)]"></div>
 					{/if}
 				</button>

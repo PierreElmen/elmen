@@ -8,6 +8,7 @@
 		TechStack
 	} from '$lib/components';
 	import { DitheredImage } from '$lib/components';
+	import { layoutState } from '$lib/stores/layoutStore.svelte';
 	import meImg from '$lib/assets/images/me.webp';
 	import pixelcodeImg from '$lib/assets/images/projects/pixelcode.png';
 	import gotlandruntImg from '$lib/assets/images/projects/gotlandrunt.png';
@@ -121,9 +122,10 @@
 						>
 						<span class="font-mono text-[10px]">GH</span>
 					</a>
-					<a
-						href="mailto:hello@example.com"
+					<button
+						type="button"
 						class="flex flex-col items-center gap-1 transition-colors hover:text-[var(--color-accent)]"
+						onclick={() => layoutState.openModal('contact')}
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +142,7 @@
 							/></svg
 						>
 						<span class="font-mono text-[10px]">MAIL</span>
-					</a>
+					</button>
 					<a
 						href="https://linkedin.com"
 						class="flex flex-col items-center gap-1 transition-colors hover:text-[var(--color-accent)]"

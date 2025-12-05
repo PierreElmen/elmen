@@ -125,7 +125,7 @@
 	<!-- Fixed Left Navigation -->
 	<NavLeft />
 
-	<!-- Sliding Modal Panel -->
+	<!-- Sliding Modal Panel (from left) -->
 	<SlidePanel />
 
 	<!-- Main Content Area -->
