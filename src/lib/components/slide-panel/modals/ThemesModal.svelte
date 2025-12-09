@@ -25,6 +25,12 @@
 			name: 'Monochrome',
 			description: 'Minimalist dark',
 			preview: { bg: '#000000', border: '#ffffff' }
+		},
+		{
+			id: 'rgb',
+			name: 'Trinitron RGB',
+			description: 'High-res phosphor',
+			preview: { bg: '#0a0a0c', border: '#00ffff' }
 		}
 	] as const;
 </script>

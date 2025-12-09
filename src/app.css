@@ -29,6 +29,12 @@
   /* Dimensions */
   --nav-width: 64px;
   --modal-width: 420px;
+
+  /* Default CRT Settings */
+  --crt-scanline-opacity: 0.25;
+  --crt-rgb-r: rgba(255, 0, 0, 0.06);
+  --crt-rgb-g: rgba(0, 255, 0, 0.06);
+  --crt-rgb-b: rgba(0, 0, 255, 0.06);
 }
 
 /* Orange Theme (Cyber) */
@@ -68,6 +74,25 @@
   --color-nav-bg: #000000;
   --color-glow: rgba(255, 255, 255, 0.35);
   --color-glow-muted: rgba(255, 255, 255, 0.1);
+}
+
+/* RGB / Trinitron Theme */
+[data-theme="rgb"] {
+  --color-bg-main: #0a0a0c;
+  --color-bg-card: #121214;
+  --color-text-main: #ffffff;
+  --color-text-muted: #8888aa;
+  --color-border: #4444ff;
+  --color-accent: #00ffff;
+  --color-nav-bg: #050508;
+  --color-glow: rgba(0, 255, 255, 0.45);
+  --color-glow-muted: rgba(0, 255, 255, 0.15);
+  
+  /* Stronger RGB separation for this theme */
+  --crt-scanline-opacity: 0.2;
+  --crt-rgb-r: rgba(255, 0, 0, 0.4);
+  --crt-rgb-g: rgba(0, 255, 0, 0.2);
+  --crt-rgb-b: rgba(0, 0, 255, 0.4);
 }
 
 @theme {
