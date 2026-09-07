@@ -175,7 +175,8 @@
 			<BentoCard
 				colSpan={4}
 				rowSpan={2}
-				href="/project/pixelcode"
+				href="https://pixelcode.se"
+				newTab={true}
 				title="HIGHLIGHTED PROJECT // PIXEL&CODE_"
 				clickable={true}
 			>
@@ -218,7 +219,8 @@
 			<BentoCard
 				colSpan={4}
 				rowSpan={2}
-				href="/project/gotlandrunt"
+				href="https://gotlandrunt.se"
+				newTab={true}
 				title="HIGHLIGHTED PROJECT // GOTLANDRUNT"
 				clickable={true}
 			>

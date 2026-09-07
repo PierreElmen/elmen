@@ -7,6 +7,7 @@
 		colSpan?: number;
 		rowSpan?: number;
 		href?: string;
+		newTab?: boolean;
 		noBorder?: boolean;
 		clickable?: boolean;
 		children?: import('svelte').Snippet;
@@ -18,6 +19,7 @@
 		colSpan = 1,
 		rowSpan = 1,
 		href = undefined,
+		newTab = false,
 		noBorder = false,
 		clickable = false,
 		children
@@ -72,6 +74,8 @@
 <svelte:element
 	this={href ? 'a' : 'div'}
 	{href}
+	target={href && newTab ? '_blank' : undefined}
+	rel={href && newTab ? 'noopener noreferrer' : undefined}
 	class="{baseClasses} {hoverClasses} {borderClasses} col-span-1 {colClass} {rowClass} {className}"
 	use:conditionalClickable={clickable}
 >

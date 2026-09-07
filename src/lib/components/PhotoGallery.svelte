@@ -15,12 +15,15 @@
 	let { photos }: Props = $props();
 
 	let currentIndex = $state(0);
-	let thumbnailContainer: HTMLDivElement;
 	let isTransitioning = $state(false);
+	let isApplePlatform = $state<boolean | null>(null);
 	let loadedImages = $state(new Set<number>([])); // Start empty, will load all on mount
 
 	// Load all images on mount
 	onMount(() => {
+		const platform = `${navigator.platform} ${navigator.userAgent}`;
+		isApplePlatform = /Mac|iPhone|iPad|iPod/i.test(platform);
+
 		// Mark all images as loaded immediately
 		const allIndices = new Set<number>();
 		for (let i = 0; i < photos.length; i++) {
@@ -72,12 +75,6 @@
 		loadedImages.add((index + 1) % photos.length); // Next
 		loadedImages = loadedImages;
 
-		// Scroll thumbnail into view
-		setTimeout(() => {
-			const thumbnail = thumbnailContainer?.querySelector(`[data-index="${index}"]`);
-			thumbnail?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-		}, 0);
-
 		setTimeout(() => {
 			isTransitioning = false;
 		}, 300);
@@ -92,9 +89,16 @@
 	}
 
 	function handleKeydown(e: KeyboardEvent) {
+		const hasPhotoModifier =
+			isApplePlatform === null ? e.metaKey || e.ctrlKey : isApplePlatform ? e.metaKey : e.ctrlKey;
+
+		if (!hasPhotoModifier) return;
+
 		if (e.key === 'ArrowRight') {
+			e.preventDefault();
 			nextPhoto();
 		} else if (e.key === 'ArrowLeft') {
+			e.preventDefault();
 			prevPhoto();
 		}
 	}
@@ -102,24 +106,36 @@
 
 <svelte:window onkeydown={handleKeydown} />
 
-<div class="flex h-screen flex-col overflow-hidden bg-[var(--color-bg-main)]">
+<div class="flex h-full min-h-0 min-w-0 flex-col overflow-hidden bg-[var(--color-bg-main)]">
 	<!-- Header -->
-	<div class="border-b border-[var(--color-border)] px-4 py-4">
-		<div class="flex items-center justify-between">
-			<div class="flex items-center gap-4">
+	<div class="shrink-0 border-b border-[var(--color-border)] px-4 py-4">
+		<div class="flex min-w-0 items-center justify-between gap-4">
+			<div class="flex min-w-0 items-center gap-4">
 				<a href="/" class="font-mono text-sm text-[var(--color-accent)] hover:underline">
 					← BACK
 				</a>
-				<h1 class="font-mono text-sm tracking-widest uppercase">MEMORIES // PHOTO_ALBUM</h1>
+				<h1 class="truncate font-mono text-sm tracking-widest uppercase">
+					MEMORIES // PHOTO_ALBUM
+				</h1>
 			</div>
-			<div class="font-mono text-xs text-[var(--color-retro-muted)]">
+			<div class="shrink-0 font-mono text-xs text-[var(--color-retro-muted)]">
 				{currentIndex + 1} / {photos.length}
 			</div>
 		</div>
 	</div>
 
+	{#if isApplePlatform !== null}
+		<div
+			class="shrink-0 px-4 pt-3 text-center font-mono text-[10px] text-[var(--color-retro-muted)] uppercase"
+		>
+			Change photo: {isApplePlatform ? '⌘' : 'Ctrl'} + ←/→
+		</div>
+	{/if}
+
 	<!-- Main Image Display -->
-	<div class="relative flex flex-1 items-center justify-center overflow-hidden p-8">
+	<div
+		class="relative flex min-h-0 min-w-0 flex-1 items-center justify-center overflow-hidden p-4 md:p-8"
+	>
 		<!-- Navigation Buttons -->
 		<button
 			onclick={prevPhoto}
@@ -143,19 +159,18 @@
 
 		<!-- Center Image -->
 		<div
-			class="pixel-border flex items-center justify-center border-2 border-[var(--color-border)] bg-[var(--color-border)]/10 transition-opacity duration-300"
+			class="pixel-border flex h-full max-h-full w-full max-w-[80%] items-center justify-center overflow-hidden border-2 border-[var(--color-border)] bg-[var(--color-border)]/10 transition-opacity duration-300"
 			class:opacity-50={isTransitioning}
-			style="max-height: calc(100vh - 250px); max-width: 80%; height: fit-content; width: fit-content;"
 		>
 			{#key currentIndex}
 				<DitheredImage
 					src={photos[currentIndex].src}
 					alt={photos[currentIndex].alt}
 					pixelScale={2}
-					className="h-[calc(100dvh_-_255px)] w-full"
+					className="h-full w-full"
 					canvasClassName="h-full w-full"
 					contrast={1.2}
-					objectFit="cover"
+					objectFit="contain"
 				/>
 			{/key}
 		</div>
@@ -182,20 +197,25 @@
 	</div>
 
 	<!-- Thumbnail Strip -->
-	<div class="border-t border-[var(--color-border)] bg-[var(--color-retro-card)] p-4">
-		<div bind:this={thumbnailContainer} class="flex gap-3 overflow-x-auto pb-2">
+	<div
+		class="shrink-0 border-t border-[var(--color-border)] bg-[var(--color-retro-card)] p-2 md:p-4"
+	>
+		<div
+			class="grid min-w-0 gap-1 overflow-hidden md:gap-2"
+			style:grid-template-columns={`repeat(${photos.length}, minmax(0, 1fr))`}
+		>
 			{#each photos as photo, i}
 				<button
 					data-index={i}
 					use:observeThumbnail={i}
 					onclick={() => selectPhoto(i)}
-					class="pixel-border shrink-0 cursor-pointer border-2 transition-all"
+					class="pixel-border min-w-0 cursor-pointer overflow-hidden border-2 transition-all"
 					class:border-[var(--color-accent)]={i === currentIndex}
 					class:border-[var(--color-border)]={i !== currentIndex}
 					class:opacity-50={i !== currentIndex}
 					aria-label="View photo {i + 1}"
 				>
-					<div class="aspect-square w-24 overflow-hidden">
+					<div class="aspect-square w-full overflow-hidden">
 						{#if loadedImages.has(i)}
 							<DitheredImage
 								src={photo.src}
@@ -219,19 +239,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-	.scrollbar-thin::-webkit-scrollbar {
-		height: 6px;
-	}
-
-	.scrollbar-thin::-webkit-scrollbar-track {
-		background: var(--color-border);
-		opacity: 0.2;
-	}
-
-	.scrollbar-thin::-webkit-scrollbar-thumb {
-		background: var(--color-accent);
-		border-radius: 3px;
-	}
-</style>

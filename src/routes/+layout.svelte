@@ -44,6 +44,7 @@
 
 		const key = event.key;
 		const isArrow = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(key);
+		const hasNavigationModifier = event.metaKey || event.ctrlKey;
 		const isAction = ['Enter', ' '].includes(key);
 		const isNumber = /^\d$/.test(key);
 
@@ -58,7 +59,7 @@
 			// We don't prevent default here as typing numbers might be needed for other things,
 			// but usually in a navigation context it's fine.
 			// If we want to prevent scrolling (e.g. Space) or other actions, we can.
-		} else if (isArrow) {
+		} else if (isArrow && !hasNavigationModifier) {
 			event.preventDefault(); // Prevent scrolling
 			crosshairVisible = true;
 			navigationState.clear(); // Clear any pending number input
@@ -145,7 +146,7 @@
         When modal opens, we increase margin-left by modal width (420px) on desktop.
     -->
 	<main
-		class="my-[16px] mr-[16px] h-[calc(100vh-32px)] flex-1 overflow-y-auto transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)]"
+		class="my-[16px] mr-[16px] h-[calc(100dvh-32px)] min-h-0 min-w-0 flex-1 overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)]"
 		style:margin-left={layoutState.isModalOpen
 			? 'calc(var(--nav-width) + var(--modal-width) + 16px)'
 			: 'calc(var(--nav-width) + 16px)'}
@@ -153,7 +154,7 @@
 			? 'calc(100% - var(--nav-width) - var(--modal-width) - 32px)'
 			: 'calc(100% - var(--nav-width) - 32px)'}
 	>
-		<div class="h-full w-full">
+		<div class="h-full min-h-0 w-full min-w-0">
 			{@render children()}
 		</div>
 	</main>

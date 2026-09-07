@@ -48,8 +48,10 @@
 	});
 </script>
 
-<div class="flex min-h-screen flex-col overflow-hidden px-2 py-4 md:px-4">
-	<div class="mb-4 flex items-center justify-between border-b border-[var(--color-border)] pb-3">
+<div class="flex h-full min-h-0 min-w-0 flex-col overflow-hidden px-2 py-4 md:px-4">
+	<div
+		class="mb-4 flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-[var(--color-border)] pb-3"
+	>
 		<div class="flex items-center gap-3">
 			<div
 				class="grid h-9 w-9 place-items-center border border-[var(--color-border)] bg-[var(--color-retro-card)]"
@@ -91,7 +93,7 @@
 		</div>
 	</div>
 
-	<div class="relative flex-1">
+	<div class="relative min-h-0 flex-1">
 		<div class="flex h-full items-center justify-center px-2 pb-2">
 			<div
 				class="pixel-border w-full max-w-5xl bg-[var(--color-retro-card)]"
